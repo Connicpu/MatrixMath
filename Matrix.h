@@ -105,13 +105,13 @@ public:
     };
   }
 
-  template<unsigned R, unsigned C>
-  friend std::ostream& operator<<(std::ostream& os, const Matrix<R, C>& mtx);
+  template<unsigned R, unsigned C, typename T = float>
+  friend std::ostream& operator<<(std::ostream& os, const Matrix<R, C, T>& mtx);
 
   AType values[ROWS][COLS];
 };
 
-template<unsigned ROWS, unsigned COLS, typename AType>
+template<unsigned ROWS, unsigned COLS, typename AType = float>
 std::ostream& operator<<(std::ostream& os, const Matrix<ROWS, COLS, AType>& mtx)
 {
   size_t text_len = 0;
