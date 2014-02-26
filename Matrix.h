@@ -43,9 +43,9 @@ public:
   }
 
   template<unsigned N>
-  Matrix<ROWS, N> operator*(const Matrix<COLS, N>& b) const
+  Matrix<ROWS, N, AType> operator*(const Matrix<COLS, N, AType>& b) const
   {
-    Matrix<ROWS, N> result;
+    Matrix<ROWS, N, AType> result;
     for (unsigned ar = 0; ar < ROWS; ++ar) // Matrix A row
     {
       for (unsigned bc = 0; bc < N; ++bc) // Matrix B column
@@ -65,8 +65,7 @@ public:
     return result;
   }
 
-  template<unsigned N>
-  Matrix<ROWS, N>& operator*=(const Matrix<COLS, N>& b)
+  Matrix& operator*=(const Matrix& b)
   {
     operator=(*this * b);
     return *this;
@@ -112,8 +111,8 @@ public:
   AType values[ROWS][COLS];
 };
 
-template<unsigned ROWS, unsigned COLS>
-std::ostream& operator<<(std::ostream& os, const Matrix<ROWS, COLS>& mtx)
+template<unsigned ROWS, unsigned COLS, typename AType>
+std::ostream& operator<<(std::ostream& os, const Matrix<ROWS, COLS, AType>& mtx)
 {
   size_t text_len = 0;
   {

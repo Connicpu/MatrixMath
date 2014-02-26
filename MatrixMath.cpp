@@ -7,8 +7,8 @@
 
 int main(void)
 {
-  auto m1 = Matrix<>::rotation2d(0.413251f);
-  auto v1 = Vector<>({0, 3, 0});
+  auto m1 = Matrix<>::rotation2d((float)M_PI);
+  Vector<> v1({0, 3, 1});
   
   time_t time = std::time(NULL);
 
@@ -18,6 +18,9 @@ int main(void)
   }
 
   time = std::time(NULL) - time;
+
+  std::cout.setf(std::ios::fixed);
+  std::cout.precision(2);
 
   std::cout << v1 << std::endl;
   std::cout << "Calculated " << TIMES 
